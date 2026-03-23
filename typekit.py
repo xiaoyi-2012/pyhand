@@ -42,14 +42,13 @@ import functools
 
 from typing import (
     TypeAliasType,
-    TypeVar,
     _SpecialForm as SpecialForm,
     _GenericAlias, # type: ignore
 )
 from error import Suppress, TypeHintError
 
 GenericAlias = types.GenericAlias | _GenericAlias
-TypeForm = type | GenericAlias | TypeAliasType | SpecialForm | types.UnionType | TypeVar
+TypeForm = type | GenericAlias | TypeAliasType | SpecialForm | types.UnionType
 
 
 def cast_type(values: cabc.Sequence[object]) -> tuple[type, ...]:
@@ -147,7 +146,7 @@ def isclass(value: object, cls: TypeForm | tuple[TypeForm]) -> bool:
 
     Unlike `isinstance`, this requires an exact type match.
     """
-    if isinstance(cls, TypeVar):
+    if isinstance(cls, typing.TypeVar):
         if cls.__bound__ is not None:
             return isinstance(value, cls.__bound__)
         if cls.__constraints__ is not None:
@@ -321,7 +320,7 @@ def typeddict_check(value: object, type_info: TypeForm) -> bool:
     return True
 
 
-def typecheck(value: object, type_info: TypeForm | None) -> bool:
+def typecheck(value: object, type_info: TypeForm | typing.TypeVar | None) -> bool:
     """
     Check whether `value` satisfies the type specification `type_info`.
 

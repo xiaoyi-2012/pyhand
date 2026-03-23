@@ -6,13 +6,12 @@ import types
 from dataclasses import dataclass
 from typing import (
     TypeAliasType,
-    TypeVar,
     _SpecialForm as SpecialForm,
     _GenericAlias, # type: ignore
 )
 
 GenericAlias = types.GenericAlias | _GenericAlias
-TypeForm = type | GenericAlias | TypeAliasType | SpecialForm | types.UnionType | TypeVar
+TypeForm = type | GenericAlias | TypeAliasType | SpecialForm | types.UnionType
 
 
 @dataclass(slots=True, frozen=True)
