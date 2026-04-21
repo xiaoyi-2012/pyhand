@@ -12,10 +12,10 @@ It does not aim to replace existing tools or frameworks. Rather, it serves as a 
 
 PyHand is guided by a few core principles:
 
-Simplicity – Keep APIs minimal and easy to reason about
-Clarity – Prefer explicit behavior over implicit magic
-Lightweight design – Depend only on Python’s standard library
-Capability over convenience – Extend what Python can do, not just shorten code
+Simplicity - Keep APIs minimal and easy to reason about
+Clarity - Prefer explicit behavior over implicit magic
+Lightweight design - Depend only on Python's standard library
+Capability over convenience - Extend what Python can do, not just shorten code
 
 ## Scope
 

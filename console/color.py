@@ -1,4 +1,3 @@
-# pylint: disable=declare-non-slot
 import colorsys
 
 from typing import TypeVar
