@@ -1,3 +1,4 @@
+# pylint: disable=wrong-import-position
 """
 PyHand
 ======
@@ -5,7 +6,7 @@ PyHand
 PyHand is a lightweight Python utility library focused on improving 
 everyday development ergonomics without adding unnecessary complexity.
 
-It relies exclusively on Python’s standard library and is designed to stay small, 
+It relies exclusively on Python's standard library and is designed to stay small, 
 predictable, and easy to integrate into any project. 
 Instead of attempting to cover every use case, 
 PyHand aims to provide carefully scoped building blocks that 
@@ -20,11 +21,11 @@ minimal dependencies, and APIs that are easy to reason about.
 
 PyHand is built around three core principles:
 
-- Simplicity – APIs should be easy to understand and predictable to use.
+- Simplicity - APIs should be easy to understand and predictable to use.
 
-- Clarity – Behavior should be explicit rather than clever.
+- Clarity - Behavior should be explicit rather than clever.
 
-- Lightweight design – The library depends only on Python’s standard library 
+- Lightweight design - The library depends only on Python's standard library 
 and avoids unnecessary complexity.
 
 PyHand does not aim to be large or all-encompassing. 
@@ -37,10 +38,6 @@ PyHand is licensed under the MIT License. See the [LICENSE](LICENSE) file for de
 """
 
 import sys
-import typekit
-import typed
-import error
-
 
 if sys.version_info < (3, 12):
-    raise EnvironmentError("Python version lower than the minimum requirement 3.12")
+    raise ImportError("Python version lower than the minimum requirement 3.12")

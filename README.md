@@ -1,23 +1,28 @@
 # PyHand
 
-PyHand is a lightweight Python utility library focused on improving everyday development ergonomics without adding unnecessary complexity.
+PyHand is a lightweight Python library that extends the language with practical runtime capabilities.
 
-It relies exclusively on Python’s standard library and is designed to stay small, predictable, and easy to integrate into any project. Instead of attempting to cover every use case, PyHand aims to provide carefully scoped building blocks that address common pain points in a clean and explicit way.
+Instead of focusing solely on utility functions, PyHand explores ways to make Python more expressive and controllable at runtime. It provides a set of carefully designed components that enhance type handling, execution behavior, and developer ergonomics—while relying only on the Python standard library.
 
-PyHand is built with long-term evolution in mind. Its internal organization and capabilities may grow over time, but its core philosophy remains the same: clarity over cleverness, minimal dependencies, and APIs that are easy to reason about.
+PyHand is built around a simple idea: keep the surface small, but make it powerful. The project evolves incrementally, focusing on clarity, composability, and minimal assumptions about how it should be used.
+
+It does not aim to replace existing tools or frameworks. Rather, it serves as a foundation for developers who want more control and flexibility without introducing external dependencies.
 
 ## Philosophy
 
-PyHand is built around three core principles:
+PyHand is guided by a few core principles:
 
-- Simplicity – APIs should be easy to understand and predictable to use.
+Simplicity – Keep APIs minimal and easy to reason about
+Clarity – Prefer explicit behavior over implicit magic
+Lightweight design – Depend only on Python’s standard library
+Capability over convenience – Extend what Python can do, not just shorten code
 
-- Clarity – Behavior should be explicit rather than clever.
+## Scope
 
-- Lightweight design – The library depends only on Python’s standard library and avoids unnecessary complexity.
+PyHand focuses on runtime-level capabilities, such as:
 
-PyHand does not aim to be large or all-encompassing. Instead, it focuses on staying small, intentional, and maintainable, while evolving carefully over time.
+Enhancing type handling and validation
+Providing controlled execution behaviors
+Improving introspection and debugging workflows
 
-## License
-
-PyHand is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
+The project is intentionally open-ended and evolves based on practical needs.
