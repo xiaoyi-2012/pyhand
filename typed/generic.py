@@ -120,7 +120,7 @@ class TypeGenericMeta(ConcreteGenericMeta):
                 TypeAliasType,
                 types.GenericAlias,
                 )) \
-                or args is None or arg is ...
+                or arg is None or arg is ...
             ):
                 # _SpecialForm and _BaseGenericAlias do not support typing
                 raise TypeError(f"Invalid generic arguments: {arg!r}")
