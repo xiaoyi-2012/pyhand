@@ -1,3 +1,18 @@
+"""
+Result type utilities.
+
+This module provides a minimal implementation of a result type for
+representing computations that may succeed or fail without using
+exceptions. It follows a pattern similar to Rust's `Result`, treating
+errors as values and requiring explicit handling.
+
+Main APIs
+=========
+
+- `Ok`
+- `Err`
+- `Result`
+"""
 from dataclasses import dataclass
 
 __all__ = ("Ok", "Err", "Result")

@@ -5,13 +5,13 @@ Utility helpers for runtime type checking.
 This module provides helper functions used by `typekit` and related
 runtime validation code.
 
-Main Components
-===============
+Main APIs
+=========
 
 - `typename`
 - `direct_setattr`
-- `iter_hint`
 - `used`
+- `iter_hint`
 """
 from collections.abc import Iterable, Mapping
 from typing import get_origin

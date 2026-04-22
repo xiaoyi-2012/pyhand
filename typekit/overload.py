@@ -9,35 +9,16 @@ metadata for IDEs and static analyzers—this module intercepts those
 signatures, compiles them, and dispatches execution to the "best-matching" 
 implementation based on inheritance graphs and strict type validation.
 
-Core Capabilities:
-------------------
-- True Runtime Dispatch:
-    Evaluates arguments against overloaded type 
-    signatures dynamically at execution time.
-
-- MRO-Aware Resolution (Best Match Wins):
-    Calculates Subtyping Distance 
-    via Method Resolution Order. If multiple overloads match, the engine 
-    selects the most specific inheritance path rather than the first match.
-
-- Ambiguity Prevention:
-    Strictly forbids overlapping or equally weighted 
-    signatures (e.g., `dist == min_dist`), raising deterministic `OverloadError`s 
-    to maintain C++ level architectural rigor.
-
-- Seamless Integration:
-    Designed as a drop-in enhancement. Developers 
-    use standard `typing.overload` syntax, sealed with `@apply_overload`.
 
 Architecture Note:
-------------------
+
 The engine extracts static signatures via `typing.get_overloads()` and 
 compiles them into a highly optimized dispatch registry. Parameter 
 validation is deferred to the core `typecheck` engine, ensuring zero-compromise 
 support for complex Generics and dynamic contexts (like `Self`).
 
-Usage:
-------
+Example:
+
 ```python
 @overload
 def foo(s: str) -> None:

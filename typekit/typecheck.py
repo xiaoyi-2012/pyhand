@@ -5,18 +5,17 @@ Runtime type checking utilities.
 This module provides helpers for validating values against type
 annotations at runtime.
 
-Main Components
-===============
+Main APIs
+=========
 
 - `typecheck`
 - `validate`
 - `validate_call`
 
-Usage
-=====
+Example:
 
 ```python
-@validated
+@validate_call
 def add(a: int, b: int) -> int:
     return a + b
 

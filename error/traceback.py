@@ -1,17 +1,29 @@
+"""
+Traceback inspection utilities.
+
+This module provides tools for constructing and traversing structured
+traceback chains with access to source code, statements, and frame data.
+
+Main APIs
+=========
+
+- `TracebackChain`
+- `build_traceback`
+"""
 import linecache
 import ast
 
 from collections.abc import Iterator
-from typing import overload
+from typing import Self, overload
 from types import TracebackType
 from dataclasses import dataclass, fields
 
-__all__ = ("TracebackStack", "build_tracer")
+__all__ = ("TracebackChain", "build_traceback")
 
 
 
 @dataclass(frozen=True, slots=True)
-class TracebackStack:
+class TracebackChain:
     """
     Represent a linked chain of traceback frames.
 
@@ -24,7 +36,7 @@ class TracebackStack:
     locals: dict[str, object]
     start_lineno: int
     end_lineno: int
-    next: "TracebackStack | None"
+    next: Self | None
 
     @property
     def source(self) -> str | None:
@@ -51,7 +63,7 @@ class TracebackStack:
         return "".join(lines[start : end]).rstrip("\r\n") or None
 
 
-    def __iter__(self) -> Iterator["TracebackStack"]:
+    def __iter__(self) -> Iterator[Self]:
         curr = self
         while curr is not None:
             yield curr
@@ -70,17 +82,17 @@ class TracebackStack:
 
 
 @overload
-def build_tracer(tb_or_exc: TracebackType) -> TracebackStack: ...
+def build_traceback(tb_or_exc: TracebackType) -> TracebackChain: ...
 
 @overload
-def build_tracer(tb_or_exc: None) -> None: ...
+def build_traceback(tb_or_exc: None) -> None: ...
 
 @overload
-def build_tracer(tb_or_exc: BaseException) -> TracebackStack | None: ...
+def build_traceback(tb_or_exc: BaseException) -> TracebackChain | None: ...
 
 
 
-def build_tracer(tb_or_exc) -> TracebackStack | None:
+def build_traceback(tb_or_exc) -> TracebackChain | None:
     """
     Build a linked traceback chain from a traceback object.
 
@@ -101,7 +113,7 @@ def build_tracer(tb_or_exc) -> TracebackStack | None:
         tbs.append(curr)
         curr = curr.tb_next
 
-    next_tb: TracebackStack | None = None
+    next_tb: TracebackChain | None = None
 
     def statement_range(filename: str, lineno: int) -> tuple[int, int]:
         lines = linecache.getlines(filename)
@@ -141,7 +153,7 @@ def build_tracer(tb_or_exc) -> TracebackStack | None:
         lineno = raw_tb.tb_lineno
         start_lineno, end_lineno = statement_range(code.co_filename, lineno)
 
-        next_tb = TracebackStack(
+        next_tb = TracebackChain(
             name     = code.co_name,
             filename = code.co_filename,
             lineno   = lineno,

@@ -1,3 +1,18 @@
+"""
+Runtime generic type utilities.
+
+This module provides metaclasses and base classes for creating
+runtime-preserving generic types with support for specialization,
+introspection, and caching.
+
+Main APIs
+=========
+
+- `ConcreteGenericMeta`
+- `TypeGenericMeta`
+- `GenericBase`
+- `TypeGenericBase`
+"""
 import types
 from typing import Any, TypeAliasType
 

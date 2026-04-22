@@ -1,4 +1,16 @@
-# pylint: disable=relative-beyond-top-level
+"""
+Console output and logging utilities.
+
+This module provides a `Console` class for displaying styled messages
+with optional level and timestamp metadata. It supports colored output,
+custom formatting, and optional file logging.
+
+Main APIs
+=========
+
+- `Console`
+- `console`
+"""
 import sys
 import os
 import time
@@ -6,7 +18,7 @@ import time
 from typing import Literal
 from collections.abc import Callable
 
-from color import Color, Colors
+from console.color import Color, Colors
 
 
 __all__ = ("Console", "console")

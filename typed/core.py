@@ -1,3 +1,25 @@
+"""
+Runtime-validated data model utilities.
+
+This module provides a lightweight system for defining strongly typed
+data models with runtime validation. Unlike frameworks such as Pydantic,
+it focuses on minimal overhead and explicit behavior without introducing
+additional abstraction layers or complex configuration.
+
+Models are defined by subclassing `TypedBase`, where type annotations
+and optional `Field` specifications are collected and transformed into
+a validation blueprint at class creation time. Validation is enforced
+during both initialization and attribute assignment.
+
+Main APIs
+=========
+
+- `TypedBase`
+- `Field`
+- `get_fields`
+- `Undefined`
+- `undefined`
+"""
 from collections.abc import Callable
 from typing import (
     Any,

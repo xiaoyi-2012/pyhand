@@ -1,3 +1,19 @@
+"""
+Color representation and ANSI formatting utilities.
+
+This module provides a `Color` type for working with RGB-based colors,
+including conversion to HSL, HSV, and hex formats. Colors are normalized
+and cached to ensure consistent identity.
+
+It also supports generating ANSI escape sequences for terminal output,
+allowing colors to be applied directly to strings.
+
+Main APIs
+=========
+
+- `Color`
+- `Colors`
+"""
 import colorsys
 
 from typing import TypeVar

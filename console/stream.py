@@ -1,4 +1,18 @@
 # pylint: disable=invalid-name
+"""
+Stream-based output utilities.
+
+This module provides a `Stream` abstraction for writing values with
+buffering and formatting support. It includes manipulators inspired by
+C++ streams for controlling output behavior and formatting.
+
+Main APIs
+=========
+
+- `Stream`
+- `std`
+- `pyout`
+"""
 import sys
 
 from typing import TextIO, Callable, Self
@@ -7,7 +21,7 @@ from typing import TextIO, Callable, Self
 __all__ = ("Stream", "std", "pyout")
 
 
-class StreamMode:
+class OutputMode:
     """
     Represent a formatting mode for stream output.
     """
@@ -44,16 +58,16 @@ class std:
     endl       = type("_endl",  (), {})()
     flush      = type("_flush", (), {})()
 
-    string     = StreamMode("string",     str)
-    repr       = StreamMode("repr",       repr)
-    hex        = StreamMode("hex",        hex, int)
-    oct        = StreamMode("oct",        oct, int)
-    bin        = StreamMode("bin",        bin, int)
-    titlecase  = StreamMode("title",      str.title)
-    uppercase  = StreamMode("upper",      str.upper)
-    lowercase  = StreamMode("lowercase",  str.lower)
-    capitalize = StreamMode("capitalize", str.capitalize)
-    swapcase   = StreamMode("swapcase",   str.swapcase)
+    string     = OutputMode("string",     str)
+    repr       = OutputMode("repr",       repr)
+    hex        = OutputMode("hex",        hex, int)
+    oct        = OutputMode("oct",        oct, int)
+    bin        = OutputMode("bin",        bin, int)
+    titlecase  = OutputMode("title",      str.title)
+    uppercase  = OutputMode("upper",      str.upper)
+    lowercase  = OutputMode("lowercase",  str.lower)
+    capitalize = OutputMode("capitalize", str.capitalize)
+    swapcase   = OutputMode("swapcase",   str.swapcase)
 
 
 # C++
@@ -65,7 +79,7 @@ class Stream:
     buf: list[str]
     buf_size: int
     flush: bool
-    mode: StreamMode
+    mode: OutputMode
     auto_reset_mode: bool
     name: str
 
@@ -74,7 +88,7 @@ class Stream:
         flush: bool = False,
         buffer_size: int = 8,
         file: TextIO = sys.stdout,
-        mode: StreamMode = std.string,
+        mode: OutputMode = std.string,
         auto_reset_mode: bool = True,
         name: str = "stream"
     ) -> None:
@@ -112,7 +126,7 @@ class Stream:
         if self.file is None:
             self.file = sys.__stdout__ or sys.stdout
 
-        if isinstance(other, StreamMode):
+        if isinstance(other, OutputMode):
             self.mode = other
             return self
 
