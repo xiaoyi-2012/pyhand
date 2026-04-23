@@ -8,6 +8,14 @@ PyHand is built around a simple idea: keep the surface small, but make it powerf
 
 It does not aim to replace existing tools or frameworks. Rather, it serves as a foundation for developers who want more control and flexibility without introducing external dependencies.
 
+## Installation
+
+Install from PyPI:
+
+```bash
+pip install pyhand-core
+```
+
 ## Philosophy
 
 PyHand is guided by a few core principles:
